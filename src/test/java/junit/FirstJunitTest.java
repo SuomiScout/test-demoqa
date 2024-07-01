@@ -7,20 +7,20 @@ public class FirstJunitTest {
 
     @BeforeAll
 
-    static void beforeAll () {
-        //Configuration.browser=
-    }
-
-    @AfterAll (){
-
-    }
-
-    @BeforeEach (){
-
-    }
-    @AfterEach (){
-
-    }
+//    static void beforeAll () {
+//        //Configuration.browser=
+//    }
+//
+//    @AfterAll (){
+//
+//    }
+//
+//    @BeforeEach (){
+//
+//    }
+//    @AfterEach (){
+//
+//    }
 
 
     @Test
