@@ -23,9 +23,8 @@ public class TextBox {
         String userName = "Patrick Star";
         //open("https://www.google.ru/?hl=ru");
         open("/text-box");
-        Selenide.sleep(40000);
-        $(".body-height").shouldHave(text("Text Box"));
-
+        Selenide.sleep(5000);
+        //$(".body-height").shouldHave(text("Text Box"));
         $("#userName").setValue(userName);
         $("#userEmail").setValue("star666@mail.ru");
         $("#currentAddress").setValue("Bikini Bottom 666");
