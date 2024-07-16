@@ -6,41 +6,29 @@ import pages.RegistrationPage;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 
-public class PracticeForm extends TestBase {
+public class PracticeForm2 extends TestBase {
 
 
     @Test
     void fillPracticeForm() {
         String userName = "Patrick";
-//        open("/automation-practice-form");
-//        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-//        Selenide.executeJavaScript("$('.sidebar-content').remove()");
-//        Selenide.executeJavaScript("$('footer').remove()");
-        //$("#firstName").setValue("Patrick");
-        //$("#userEmail").setValue("star666@mail.ru");
-        //$("#lastName").setValue("Star");
-        //$("#dateOfBirthInput").click();
-//        $(".react-datepicker__month-select").selectOption("March");//другой вариант
-//        //$(byText("March")).click();
-//        $(".react-datepicker__year-select").click();
-//        $(byText("1961")).click();
-//        $(byText("13")).click();
         registrationPage.openPage() //Через RegistrationPage registrationPage = new RegistrationPage ();
                 .setFirstName(userName)
-                .setLastName("Star");
-        new RegistrationPage().setUserEmail("star666@mail.ru"); //Оставлю одну через registrationPage new RegistrationPage()
+                .setLastName("Star")
+                .setUserEmail("star666@mail.ru")
+                .setUserNumber("88005553535")
+                .setBirthDay("13","March","1961");
 
+        sleep(8000);
         $("#gender-radio-2").ancestor("div").click();
-        sleep(5000);
-        $("#userNumber").setValue("88005553535");
 
-        sleep(5000);
         $("#subjectsInput").setValue("Arts").pressEnter();
         $("#hobbies-checkbox-1").ancestor("div").click();
         File cv = new File("src/test/resources/zat.jpg");
