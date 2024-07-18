@@ -19,37 +19,45 @@ public class PracticeForm2 extends TestBase {
     @Test
     void fillPracticeForm() {
         String userName = "Patrick";
+        String userLastName = "Star";
+        String gender = "Other";
+        String userEmail = "star666@mail.ru";
+        String userNumber = "88005553535";
+        //String userBirthday = "13","March","1961";
+        String userAddress = "Bikini Bottom 666";
+        String userState = "Rajasthan";
+        String userCity = "Jaiselmer";
+
         registrationPage.openPage() //Через RegistrationPage registrationPage = new RegistrationPage ();
                 .setFirstName(userName)
-                .setLastName("Star")
-                .setUserEmail("star666@mail.ru")
-                .setUserNumber("88005553535")
-                .setBirthDay("13","March","1961");
+                .setLastName(userLastName)
+                .setGender (gender)
+                .setUserEmail(userEmail)
+                .setUserNumber(userNumber)
+                .setBirthDay("13","March","1961")
+                .setSubjects ()
+                .setHobbies ()
+                .setUpload ()
+                .setAddress(userAddress)
+                .setState(userState)
+                .setCity(userCity)
+                .setSubmit();
 
-        sleep(8000);
-        $("#gender-radio-2").ancestor("div").click();
-
-        $("#subjectsInput").setValue("Arts").pressEnter();
-        $("#hobbies-checkbox-1").ancestor("div").click();
-        File cv = new File("src/test/resources/zat.jpg");
-        $("#uploadPicture").uploadFile(cv);
-        //$("#uploadPicture").uploadFile(new File("src/test/resources/zat.jpg")); //альтернативный вариант
-        //$("#uploadPicture").uploadFromClasspath("zat.jpg"); //альтернативный вариант
-        $("#currentAddress").setValue("Bikini Bottom 666");
-        //$(byText("Select State")).click();
-        $("#state").click();
-        //$(byText("Rajasthan")).click();
-        $("#stateCity-wrapper").$(byText("Rajasthan")).click();
-        //$(byText("Select City")).click();
-        $("#city").click();
-        //$(byText("Jaiselmer")).click();
-        $("#stateCity-wrapper").$(byText("Jaiselmer")).click();
-        sleep(8000);
-        $("#submit").click();
-        sleep(8000);
-        $(".modal-content").should(appear);
-        $(".modal-body").shouldHave((text("Patrick")));
-        sleep(5000);
-        $("#closeLargeModal").click();
+        registrationPage.verifyResultsModalAppears()
+                        .verifyResult("Student Name", "Patrick Star") //userName +
+                        .verifyResult("Student Email", "star666@mail.ru")
+                        .verifyResult("Gender", "Other")
+                        .verifyResult("Mobile", "8800555353")
+                        .verifyResult("Date of Birth",  "13 March,1961")
+                        .verifyResult("Subjects", "Arts")
+                        .verifyResult("Hobbies", "Sports")
+                        .verifyResult("Picture",  "zat.jpg")
+                        .verifyResult("Address", "Bikini Bottom 666")
+                        .verifyResult("State and City", "Rajasthan Jaiselmer");
+        registrationPage.closeModal();
     }
 }
+//        File cv = new File("src/test/resources/zat.jpg");
+//        $("#uploadPicture").uploadFile(cv);
+//$("#uploadPicture").uploadFile(new File("src/test/resources/zat.jpg")); //альтернативный вариант
+//$("#uploadPicture").uploadFromClasspath("zat.jpg"); //альтернативный вариант

@@ -1,6 +1,7 @@
 package demoqa;
 
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
@@ -18,19 +19,19 @@ public class PracticeForm extends TestBase {
     @Test
     void fillPracticeForm() {
         String userName = "Patrick";
-//        open("/automation-practice-form");
-//        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-//        Selenide.executeJavaScript("$('.sidebar-content').remove()");
-//        Selenide.executeJavaScript("$('footer').remove()");
-        //$("#firstName").setValue("Patrick");
-        //$("#userEmail").setValue("star666@mail.ru");
-        //$("#lastName").setValue("Star");
-        //$("#dateOfBirthInput").click();
-//        $(".react-datepicker__month-select").selectOption("March");//другой вариант
-//        //$(byText("March")).click();
-//        $(".react-datepicker__year-select").click();
-//        $(byText("1961")).click();
-//        $(byText("13")).click();
+        open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        Selenide.executeJavaScript("$('.sidebar-content').remove()");
+        Selenide.executeJavaScript("$('footer').remove()");
+        $("#firstName").setValue("Patrick");
+        $("#userEmail").setValue("star666@mail.ru");
+        $("#lastName").setValue("Star");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("March");//другой вариант
+        //$(byText("March")).click();
+        $(".react-datepicker__year-select").click();
+        $(byText("1961")).click();
+        $(byText("13")).click();
         registrationPage.openPage() //Через RegistrationPage registrationPage = new RegistrationPage ();
                 .setFirstName(userName)
                 .setLastName("Star");
