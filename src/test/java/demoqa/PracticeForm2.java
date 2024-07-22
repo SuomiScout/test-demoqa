@@ -2,15 +2,8 @@ package demoqa;
 
 
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.sleep;
 
 
 public class PracticeForm2 extends TestBase {
@@ -20,13 +13,19 @@ public class PracticeForm2 extends TestBase {
     void fillPracticeForm() {
         String userName = "Patrick";
         String userLastName = "Star";
+        String fullName = userName + " " + userLastName;
         String gender = "Other";
         String userEmail = "star666@mail.ru";
         String userNumber = "88005553535";
-        //String userBirthday = "13","March","1961";
+        String birthYear = "1961";
+        String birthMonth = "March";
+        String birthDay = "13";
+        String birthDate = birthDay + " " + birthMonth + "," + birthYear;
         String userAddress = "Bikini Bottom 666";
         String userState = "Rajasthan";
         String userCity = "Jaiselmer";
+        String userUpload = "zat.jpg";
+        String userSubjects ="Arts";
 
         registrationPage.openPage() //Через RegistrationPage registrationPage = new RegistrationPage ();
                 .setFirstName(userName)
@@ -34,26 +33,26 @@ public class PracticeForm2 extends TestBase {
                 .setGender (gender)
                 .setUserEmail(userEmail)
                 .setUserNumber(userNumber)
-                .setBirthDay("13","March","1961")
-                .setSubjects ()
+                .setBirthDay(birthDay,birthMonth,birthYear)
+                .setSubjects (userSubjects)
                 .setHobbies ()
-                .setUpload ()
+                .setUpload (userUpload)
                 .setAddress(userAddress)
                 .setState(userState)
                 .setCity(userCity)
                 .setSubmit();
 
         registrationPage.verifyResultsModalAppears()
-                        .verifyResult("Student Name", "Patrick Star") //userName +
-                        .verifyResult("Student Email", "star666@mail.ru")
-                        .verifyResult("Gender", "Other")
-                        .verifyResult("Mobile", "8800555353")
-                        .verifyResult("Date of Birth",  "13 March,1961")
+                        .verifyResult("Student Name", fullName)
+                        .verifyResult("Student Email", userEmail)
+                        .verifyResult("Gender", gender)
+                        .verifyResult("Mobile", userNumber)
+                        .verifyResult("Date of Birth",  birthDate)
                         .verifyResult("Subjects", "Arts")
                         .verifyResult("Hobbies", "Sports")
-                        .verifyResult("Picture",  "zat.jpg")
-                        .verifyResult("Address", "Bikini Bottom 666")
-                        .verifyResult("State and City", "Rajasthan Jaiselmer");
+                        .verifyResult("Picture", "images/zat.jpg")
+                        .verifyResult("Address", userAddress)
+                        .verifyResult("State and City", userState + userCity );
         registrationPage.closeModal();
     }
 }

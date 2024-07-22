@@ -6,6 +6,7 @@ import pages.components.CalendarComponent;
 import pages.components.RegistrationResultsModal;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -14,6 +15,7 @@ public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     RegistrationResultsModal registrationResultsModal = new RegistrationResultsModal();
     private final String TITLE_TEXT = "Student Registration Form";
+    private final String IMG_FOLDER = "images/";
     private SelenideElement
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
@@ -23,7 +25,8 @@ public class RegistrationPage {
             addressInput = $("#currentAddress"),
             stateInput = $("#stateCity-wrapper"),
             submitInput = $("#submit"),
-            modalClose = $("#closeLargeModal");
+            modalClose = $("#closeLargeModal"),
+            uploadInput = $("#uploadPicture");
 
     public RegistrationPage openPage () {
 
@@ -53,8 +56,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubjects () {
-        $("#subjectsInput").setValue("Arts").pressEnter();
+    public RegistrationPage setSubjects (String value) {
+        $("#subjectsInput").setValue(value).pressEnter();
         return this;
     }
 
@@ -62,8 +65,8 @@ public class RegistrationPage {
         $("#hobbies-checkbox-1").ancestor("div").click();
         return this;
     }
-    public RegistrationPage setUpload () {
-        $("#uploadPicture").uploadFromClasspath("zat.jpg");
+    public RegistrationPage setUpload (String value) {
+        uploadInput.uploadFromClasspath(IMG_FOLDER + value);
         return this;
     }
 
